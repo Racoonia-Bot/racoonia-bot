@@ -1,9 +1,8 @@
 import { Document, Model, Schema, model } from 'mongoose';
-import { BotUserDoc } from './botUser';
+import { BotUserDoc, getAccessableConnections } from './botUser';
 import { DiscordUserDoc, getDiscordUserData, getOrCreateDiscordUser } from './discordUser';
 import { User } from 'discord.js';
 import { debug } from '../Log';
-import { getAccessableConnections } from '../Essentials';
 
 export interface CodenameDoc extends Document {
     user: BotUserDoc['_id'];
