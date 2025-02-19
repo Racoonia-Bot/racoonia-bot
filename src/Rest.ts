@@ -5,12 +5,21 @@ import { getStatistic } from './api/Stats';
 import { success } from './Log';
 import { Server } from 'http';
 import { getConfig } from './Config';
+import rateLimit from 'express-rate-limit';
 
 // * Setup
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+// * Rate limiting
+
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: getConfig().rate_limit,
+});
+app.use(limiter);
 
 // * Routes
 
