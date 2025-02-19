@@ -1,0 +1,14 @@
+{
+    "failure.general": "Der Fehler ist aufgetreten",
+    "failure.command_not_found": "Befehl konnte nicht gefunden werden",
+    "failure.component_not_found": "Komponente konnte nicht gefunden werden",
+    "failure.subcommand_group_not_found": "Subcommand-Gruppe konnte nicht gefunden werden",
+    "failure.subcommand_not_found": "Subcommand konnte nicht gefunden werden",
+    "failure.unknown_component_type": "Unbekannter Komponententyp",
+    "failure.feature_not_implemented": "Diese Funktion ist noch nicht implementiert",
+    "failure.bot_user_not_found": "Bot-Nutzer konnte nicht gefunden werden",
+    "failure.is_chat_input_command": "Dieser Befehl ist nur als Chat-Befehl verfügbar",
+    "failure.subcommand_execution": "Dieser Befehl kann nur als Unterbefehl ausgeführt werden, aber das ist fehlgeschlagen",
+    "failure.slash_command_execution": "Beim Ausführen des Befehls ist ein Fehler aufgetreten",
+    "failure.message_component_execution": "Beim Auführen der Komponenteninteraktion ist ein Fehler aufgetreten"
+}

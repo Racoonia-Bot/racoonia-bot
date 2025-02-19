@@ -1,0 +1,10 @@
+import { EventListener } from "../EventListeners";
+import { debug } from "../Log";
+
+export const Template: EventListener = {
+    start: (client) =>{
+        client.on("template", async () => {
+            debug("Template event triggered");
+        });
+    }
+}

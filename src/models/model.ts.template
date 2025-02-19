@@ -1,0 +1,15 @@
+import { Document, Model, Schema, model } from 'mongoose';
+
+export interface Template extends Document {
+    field: string;
+}
+
+interface TemplateModel extends Model<Template> { }
+
+const templateSchema = new Schema<Template, TemplateModel>({
+    field: { type: String, required: true },
+});
+
+const templateModel = model<Template, TemplateModel>('Templates', templateSchema);
+
+export default templateModel;

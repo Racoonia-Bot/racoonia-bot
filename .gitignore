@@ -1,0 +1,9 @@
+/node_modules/
+/dist/
+/logs/
+/.vscode/
+
+config.yml
+current-release.txt
+release-download.txt
+yarn-error.log

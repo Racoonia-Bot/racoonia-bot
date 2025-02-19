@@ -1,0 +1,14 @@
+import { ApplicationCommandType } from "discord.js";
+import { Command } from "../InteractionEssentials";
+import { debug } from "../Log";
+import { FeatureNotImplementedFailure } from "../Failure";
+
+export const Template: Command = {
+    name: "template",
+    description: "Template description",
+    type: ApplicationCommandType.ChatInput,
+    run: async (client, interaction, botUser) => {
+        debug("Template command called");
+        return new FeatureNotImplementedFailure();
+    },
+};

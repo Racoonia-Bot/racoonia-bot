@@ -1,0 +1,18 @@
+debug: true
+api_port: 3000
+do_update_check: true
+update_check_cron: 0 * * * *
+log_channel: "" # Discord channel ID
+log_role: "" # Discord role ID
+database_name: "bot-template"
+log_to_discord: false
+database_expiration: 7 # In days
+github_repo_owner: "Racooder"
+github_repo_name: "bot-template"
+changelog_fetch_delay: 60 # In seconds
+keep_logs: 10 # Number of old logs to keep (-1 to keep all)
+
+# Secrets
+mongo_uri: "mongodb://127.0.0.1:27017"
+discord_token: ""
+github_token: ""

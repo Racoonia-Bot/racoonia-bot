@@ -1,0 +1,14 @@
+{
+    "failure.general": "The error has occured",
+    "failure.command_not_found": "Command not found",
+    "failure.component_not_found": "Component not found",
+    "failure.subcommand_group_not_found": "Subcommand group not found",
+    "failure.subcommand_not_found": "Subcommand not found",
+    "failure.unknown_component_type": "Unknown component type",
+    "failure.feature_not_implemented": "Feature not implemented yet",
+    "failure.bot_user_not_found": "Bot user not found",
+    "failure.is_chat_input_command": "This command is only available as a chat input command",
+    "failure.subcommand_execution": "This command can only be executed as a subcommand, however that failed",
+    "failure.slash_command_execution": "An error occured while executing the slash command",
+    "failure.message_component_execution": "An error occured while executing the message component interaction"
+}
