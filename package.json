@@ -1,7 +1,7 @@
 {
-  "name": "bot-template",
+  "name": "racoonia-bot",
   "main": "src/App.ts",
-  "repository": "https://github.com/Racooder/bot-template.git",
+  "repository": "https://github.com/Racoonia-Bot/racoonia-bot.git",
   "author": "Racooder <Racooder@racoonia.net>",
   "license": "MIT",
   "scripts": {
