@@ -1,8 +1,8 @@
 import { Document, Model, Schema, model } from 'mongoose';
-import { BotUserDoc } from './botUser';
+import { BotUserDoc, getAccessableConnections } from './botUser';
 import { DiscordUserDoc, RawDiscordUser, getDiscordUserData, getOrCreateDiscordUser } from './discordUser';
 import { User } from 'discord.js';
-import { approximateEqual, generateToken, getAccessableConnections } from '../Essentials';
+import { approximateEqual, generateToken } from '../Essentials';
 import { debug } from '../Log';
 
 const QUOTE_DATE_RANGE = 259200000; // 3 days in milliseconds

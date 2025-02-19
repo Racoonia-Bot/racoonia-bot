@@ -1,9 +1,9 @@
 import { Document, Model, Schema, model } from 'mongoose';
-import { generateToken, getAccessableConnections, onlyUnique } from '../Essentials';
+import { generateToken, onlyUnique } from '../Essentials';
 import quoteModel, { QuoteDoc, QuotePopulated } from './quote';
 import { debug } from '../Log';
 import { DiscordUserDoc } from './discordUser';
-import { BotUserDoc } from './botUser';
+import { BotUserDoc, getAccessableConnections } from './botUser';
 
 export interface QuoteGuesserDoc extends Document {
     token: string;
