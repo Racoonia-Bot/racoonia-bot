@@ -15,6 +15,8 @@ export type Config = {
     github_repo_name: string;
     changelog_fetch_delay: number;
     keep_logs: number;
+    rate_limit: number;
+
     mongo_uri: string;
     discord_token: string;
     github_token: string;
@@ -62,6 +64,8 @@ function getEnvConfig(): Partial<Config> {
             github_repo_name: process.env.GITHUB_REPO_NAME,
             changelog_fetch_delay: safeParseInt(process.env.CHANGELOG_FETCH_DELAY),
             keep_logs: safeParseInt(process.env.KEEP_LOGS),
+            rate_limit: safeParseInt(process.env.RATE_LIMIT),
+
             mongo_uri: process.env.MONGO_URI,
             discord_token: process.env.DISCORD_TOKEN,
             github_token: process.env.GITHUB_TOKEN

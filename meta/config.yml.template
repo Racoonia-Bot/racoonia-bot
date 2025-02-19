@@ -11,6 +11,7 @@ github_repo_owner: "Racooder"
 github_repo_name: "bot-template"
 changelog_fetch_delay: 60 # In seconds
 keep_logs: 10 # Number of old logs to keep (-1 to keep all)
+rate_limit: 50 # Requests per 10 minutes
 
 # Secrets
 mongo_uri: "mongodb://127.0.0.1:27017"
