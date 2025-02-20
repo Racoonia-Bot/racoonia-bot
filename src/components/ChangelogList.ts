@@ -9,7 +9,7 @@ export const ChangelogList: Component<ButtonInteraction> = {
     type: ComponentType.Button,
     subcomponents: {
         page: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 debug("Changelog page button pressed");
                 const releases = await getReleases();
                 const page = clamp(parseFloat(data[0]), 0, releases.length - 1);

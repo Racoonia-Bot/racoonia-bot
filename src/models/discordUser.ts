@@ -4,11 +4,12 @@ import { debug } from '../Log';
 
 export type DiscordUserType = 'discord' | 'legacy' | 'non-discord';
 export type RawDiscordUser = User | string;
+export type DiscordUserData = { name: string, type: DiscordUserType, id?: string };
 
-export function getDiscordUserData(user: User): { name: string, type: DiscordUserType } {
+export function getDiscordUserData(user: User): DiscordUserData {
     const type = user.discriminator === '0' ? 'discord' : 'legacy';
     const name = type === 'discord' ? user.username : `${user.username}#${user.discriminator}`;
-    return { name, type };
+    return { name, type, id: user.id };
 }
 
 export type DiscordUserSettings = { }

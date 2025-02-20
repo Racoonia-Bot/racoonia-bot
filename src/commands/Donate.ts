@@ -12,7 +12,7 @@ export const Donate: Command = {
     name: "donate",
     description: "Support the developement of the bot!",
     type: ApplicationCommandType.ChatInput,
-    run: async (client, interaction, botUser) => {
+    run: async (client, interaction, botUser, discordUser) => {
         debug("Donate command called");
 
         const embed = new EmbedBuilder()
