@@ -106,6 +106,14 @@ export class BotUserNotFoundFailure extends Failure {
     }
 }
 
+export class RemoveWordFailure extends Failure {
+    constructor(error?: any) {
+        super(error);
+        this.type = "removeWordFailure";
+        this.localizationKey = "failure.remove_word";
+    }
+}
+
 export class IsChatInputCommandFailure extends Failure {
     constructor(error?: any) {
         super(error);
@@ -127,6 +135,14 @@ export class SubcomponentExecutionFailure extends Failure {
         super(error);
         this.type = "subcomponentExecutionFailure";
         this.localizationKey = "failure.subcomponent_execution";
+    }
+}
+
+export class UnknownQuotePageDataFailure extends Failure {
+    constructor(error?: any) {
+        super(error);
+        this.type = "unknownQuotePageDateFailure";
+        this.localizationKey = "failure.unknown_quote_page_data";
     }
 }
 

@@ -2,6 +2,9 @@ import { EventListener } from "../EventListeners";
 import { Commands } from "../Interactions";
 import { debug, error, info, success } from "../Log";
 import mongoose from "mongoose";
+import followMenuModel from "../models/followMenu";
+import quoteGuesserModel from "../models/quoteGuesser";
+import quoteListModel from "../models/quoteList";
 import { Model } from 'mongoose';
 import statisticModel from "../models/statistic";
 import { getConfig } from "../Config";
@@ -45,7 +48,11 @@ export const Ready: EventListener = {
 }
 
 export async function clearOldEntries() {
-    const models = [] as Model<any>[];
+    const models = [
+        followMenuModel,
+        quoteGuesserModel,
+        quoteListModel
+    ] as Model<any>[];
 
     for (const model of models) {
         await model.deleteMany({ updatedAt: { $lt: new Date(Date.now() - (getConfig().database_expiration * 24 * 60 * 60 * 1000)) } });

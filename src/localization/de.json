@@ -7,6 +7,7 @@
     "failure.unknown_component_type": "Unbekannter Komponententyp",
     "failure.feature_not_implemented": "Diese Funktion ist noch nicht implementiert",
     "failure.bot_user_not_found": "Bot-Nutzer konnte nicht gefunden werden",
+    "failure.remove_word": "Wort konnte nicht entfernt werden",
     "failure.is_chat_input_command": "Dieser Befehl ist nur als Chat-Befehl verfügbar",
     "failure.subcommand_execution": "Dieser Befehl kann nur als Unterbefehl ausgeführt werden, aber das ist fehlgeschlagen",
     "failure.slash_command_execution": "Beim Ausführen des Befehls ist ein Fehler aufgetreten",

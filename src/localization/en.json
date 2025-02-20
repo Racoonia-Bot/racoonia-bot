@@ -7,8 +7,10 @@
     "failure.unknown_component_type": "Unknown component type",
     "failure.feature_not_implemented": "Feature not implemented yet",
     "failure.bot_user_not_found": "Bot user not found",
+    "failure.remove_word": "Failed to remove word",
     "failure.is_chat_input_command": "This command is only available as a chat input command",
     "failure.subcommand_execution": "This command can only be executed as a subcommand, however that failed",
+    "failure.unknown_quote_page_data": "Unknown quote page data",
     "failure.slash_command_execution": "An error occured while executing the slash command",
     "failure.message_component_execution": "An error occured while executing the message component interaction"
 }
