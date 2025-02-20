@@ -1,6 +1,6 @@
 import { Document, Model, Schema, model } from 'mongoose';
 import { BotUserDoc, getAccessableConnections } from './botUser';
-import { DiscordUserDoc, getDiscordUserData, getOrCreateDiscordUser } from './discordUser';
+import { DiscordUserDoc } from './discordUser';
 import { User } from 'discord.js';
 import { debug } from '../Log';
 
@@ -78,11 +78,9 @@ export async function removeWord(botUser: BotUserDoc, word: string, inGuild: boo
     return deleted;
 }
 
-export async function addWord(botUser: BotUserDoc, creatorUser: User, word: string): Promise<CodenamePopulated | undefined> {
+export async function addWord(botUser: BotUserDoc, creator: DiscordUserDoc, word: string): Promise<CodenamePopulated | undefined> {
     debug(`Adding codename word ${word} for bot user ${botUser.name}`);
 
-    const creatorData = getDiscordUserData(creatorUser);
-    const creator = await getOrCreateDiscordUser(creatorData.name, creatorData.type, creatorUser.id);
     const word_lower = word.toLowerCase();
     const existing = await codenameModel
         .findOne({ user: botUser._id, word_lower })

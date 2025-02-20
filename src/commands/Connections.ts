@@ -53,7 +53,7 @@ export const Connections: Command = {
     ],
     subcommands: {
         follow: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Follow subcommand called");
 
                 const name = interaction.options.getString("name", true);
@@ -89,7 +89,7 @@ export const Connections: Command = {
             },
         },
         list: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("List subcommand called");
 
                 const [embed, actionRow] = await connectionListMessage(botUser, 0);

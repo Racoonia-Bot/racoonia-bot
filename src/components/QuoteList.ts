@@ -12,7 +12,7 @@ export const QuoteList: Component<ButtonInteraction> = {
     type: ComponentType.Button,
     subcomponents: {
         page: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 debug("QuotePage page button pressed");
 
                 const quoteList = await getQuoteList(data[0]);

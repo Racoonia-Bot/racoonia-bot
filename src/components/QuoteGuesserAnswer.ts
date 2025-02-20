@@ -8,7 +8,7 @@ import { GAME_NOT_FOUND } from './QuoteGuesserButton';
 export const QuoteGuesserAnswer: Component<StringSelectMenuInteraction> = {
     name: "quote_guesser_answer",
     type: ComponentType.StringSelect,
-    run: async (client, interaction, botUser, data) => {
+    run: async (client, interaction, botUser, discordUser, data) => {
         if (!interaction.isStringSelectMenu()) {
             return new SubcomponentExecutionFailure();
         }

@@ -216,7 +216,7 @@ export const Quote: Command = {
     ],
     subcommands: {
         add: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Quote add subcommand called");
 
                 const context: string | undefined = interaction.options.getString("context", false) ?? undefined;
@@ -270,7 +270,7 @@ export const Quote: Command = {
                     }
                 }
 
-                await createQuote(botUser, interaction.user, quotes, authors, context);
+                await createQuote(botUser, discordUser, quotes, authors, context);
 
                 return {
                     replyType: ReplyType.Reply,
@@ -280,7 +280,7 @@ export const Quote: Command = {
             },
         },
         remove: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Quote remove subcommand called");
 
                 const token = interaction.options.getString("quote-token", true);
@@ -310,7 +310,7 @@ export const Quote: Command = {
             },
         },
         list: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Quote list subcommand called");
 
                 const content = interaction.options.getString("content", false) ?? undefined;
@@ -354,7 +354,7 @@ export const Quote: Command = {
             },
         },
         context: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Quote context subcommand called");
 
                 const token = interaction.options.getString("quote-token", true);
@@ -380,7 +380,7 @@ export const Quote: Command = {
             },
         },
         info: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Quote context subcommand called");
 
                 const token = interaction.options.getString("quote-token", true);

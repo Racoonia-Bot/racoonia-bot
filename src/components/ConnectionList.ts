@@ -10,7 +10,7 @@ export const ConnectionList: Component<ButtonInteraction> = {
     type: ComponentType.Button,
     subcomponents: {
         page: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 debug("ConnectionList page button pressed");
 
                 const page = parseInt(data[0]);
@@ -24,7 +24,7 @@ export const ConnectionList: Component<ButtonInteraction> = {
             },
         },
         unfollow: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 debug("ConnectionList unfollow button pressed");
 
                 const targetId = data[0];

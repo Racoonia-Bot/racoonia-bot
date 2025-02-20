@@ -1,6 +1,6 @@
 import { Document, Model, Schema, model } from 'mongoose';
 import { BotUserDoc, getAccessableConnections } from './botUser';
-import { DiscordUserDoc, RawDiscordUser, getDiscordUserData, getOrCreateDiscordUser } from './discordUser';
+import { DiscordUserDoc, getDiscordUserData, getOrCreateDiscordUser, RawDiscordUser } from './discordUser';
 import { User } from 'discord.js';
 import { approximateEqual, generateToken } from '../Essentials';
 import { debug } from '../Log';
@@ -51,12 +51,10 @@ const quoteSchema = new Schema<QuoteDoc, QuoteModel>({
 
 const quoteModel = model<QuoteDoc, QuoteModel>('Quotes', quoteSchema);
 
-export async function createQuote(botUser: BotUserDoc, creatorUser: User, statements: string[], authors: RawDiscordUser[], context?: string): Promise<QuotePopulated> {
+export async function createQuote(botUser: BotUserDoc, creator: DiscordUserDoc, statements: string[], authors: RawDiscordUser[], context?: string): Promise<QuotePopulated> {
     debug("Creating quote entry")
 
     const token = generateToken();
-    const creatorData = getDiscordUserData(creatorUser);
-    const creator = await getOrCreateDiscordUser(creatorData.name, creatorData.type, creatorUser.id);
     const authorDocs: DiscordUserDoc[] = [];
     for (const author of authors) {
         if (typeof author === 'string') {
@@ -64,7 +62,7 @@ export async function createQuote(botUser: BotUserDoc, creatorUser: User, statem
             authorDocs.push(authorUser);
         } else {
             const authorData = getDiscordUserData(author);
-            const authorUser = await getOrCreateDiscordUser(authorData.name, authorData.type, author.id);
+            const authorUser = await getOrCreateDiscordUser(authorData.name, authorData.type, authorData.id);
             authorDocs.push(authorUser);
         }
     }

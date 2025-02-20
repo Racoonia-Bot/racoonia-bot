@@ -51,7 +51,7 @@ export const Settings: Command = {
     ],
     subcommands: {
         view: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Settings view subcommand called");
 
                 const embedBuiler = new EmbedBuilder()
@@ -73,7 +73,7 @@ export const Settings: Command = {
         change: {
             subcommands: {
                 quote_privacy: {
-                    run: async (client, interaction, botUser) => {
+                    run: async (client, interaction, botUser, discordUser) => {
                         debug("Settings change quote-privacy subcommand called");
 
                         const privacy = interaction.options.getString("privacy", true);

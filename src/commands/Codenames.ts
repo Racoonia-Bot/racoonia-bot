@@ -43,11 +43,11 @@ export const Codenames: Command = {
     ],
     subcommands: {
         add: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Codenames add subcommand called");
 
                 const word = interaction.options.getString("word", true);
-                const document = await addWord(botUser, interaction.user, word);
+                const document = await addWord(botUser, discordUser, word);
                 if (document === undefined) {
                     return {
                         replyType: ReplyType.Reply,
@@ -64,7 +64,7 @@ export const Codenames: Command = {
             }
         },
         remove: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Codenames remove subcommand called");
 
                 const word = interaction.options.getString("word", true);
@@ -98,7 +98,7 @@ export const Codenames: Command = {
             }
         },
         wordpack: {
-            run: async (client, interaction, botUser) => {
+            run: async (client, interaction, botUser, discordUser) => {
                 debug("Codenames wordpack subcommand called");
 
                 const codenames = await getWords(botUser);

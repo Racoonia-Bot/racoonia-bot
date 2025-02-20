@@ -17,7 +17,7 @@ export const QuoteGuesserButton: Component<ButtonInteraction> = {
     type: ComponentType.Button,
     subcomponents: {
         finish: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 const gameDocument = await quoteGuesserModel
                     .findById(data[0])
                     .populate("currentQuote")
@@ -38,7 +38,7 @@ export const QuoteGuesserButton: Component<ButtonInteraction> = {
             },
         },
         end: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 const gameDocument = await quoteGuesserModel
                     .findById(data[0])
                     .exec() as QuoteGuesserDoc | null;
@@ -54,7 +54,7 @@ export const QuoteGuesserButton: Component<ButtonInteraction> = {
             },
         },
         next: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 const gameDocument = await quoteGuesserModel
                     .findById(data[0])
                     .populate("currentQuote")

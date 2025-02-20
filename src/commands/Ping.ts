@@ -7,7 +7,7 @@ export const Ping: Command = {
     name: "ping",
     description: "A ping command",
     type: ApplicationCommandType.ChatInput,
-    run: async (client, interaction, botUser) => {
+    run: async (client, interaction, botUser, discordUser) => {
         debug("Ping command called");
 
         const latency = Math.abs(Date.now() - interaction.createdTimestamp);

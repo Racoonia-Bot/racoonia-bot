@@ -11,7 +11,7 @@ export const FollowMenu: Component<ButtonInteraction> = {
     type: ComponentType.Button,
     subcomponents: {
         page: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 debug("FollowMenu page button pressed");
 
                 const document = await followMenuModel
@@ -39,7 +39,7 @@ export const FollowMenu: Component<ButtonInteraction> = {
             },
         },
         follow: {
-            run: async (client, interaction, botUser, data) => {
+            run: async (client, interaction, botUser, discordUser, data) => {
                 debug("FollowMenu follow button pressed");
                 const targetDocument = await botUserModel
                     .findById(data[0])

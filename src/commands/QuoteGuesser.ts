@@ -10,7 +10,7 @@ export const QuoteGuesser: Command = {
     name: "quote_guesser",
     description: "Play the quote guesser game.",
     type: ApplicationCommandType.ChatInput,
-    run: async (client, interaction, botUser) => {
+    run: async (client, interaction, botUser, discordUser) => {
         debug("QuoteGuesser command called");
         return await newRound(botUser);
     },
