@@ -6,6 +6,7 @@ import statisticModel from "../models/statistic";
 import { ButtonInteraction, Client, CommandInteraction, ComponentType, InteractionEditReplyOptions, InteractionUpdateOptions, MessageComponentInteraction } from "discord.js";
 import { Commands, Components } from "../Interactions";
 import { ReplyType, Response } from "../InteractionEssentials";
+import { DiscordUserDoc, getDiscordUserData, getOrCreateDiscordUser } from "../models/discordUser";
 
 export const InteractionCreate: EventListener = {
     start: (client) => {
@@ -19,11 +20,14 @@ export const InteractionCreate: EventListener = {
                 botUser = await updateBotUser(interaction.user.id, BotUserType.USER, interaction.user.username, 0);
             }
 
+            const discordUserData = getDiscordUserData(interaction.user);
+            const discordUser = await getOrCreateDiscordUser(discordUserData.name, discordUserData.type, discordUserData.id);
+
             let result: [Response, string] | Failure;
             if (interaction.isCommand()) {
-                result = await handleSlashCommand(client, interaction, botUser);
+                result = await handleSlashCommand(client, interaction, botUser, discordUser);
             } else if (interaction.isMessageComponent()) {
-                result = await handleMessageComponent(client, interaction, botUser);
+                result = await handleMessageComponent(client, interaction, botUser, discordUser);
             } else {
                 logToDiscord(client, error("Unknown interaction type"));
                 return;
@@ -48,7 +52,7 @@ export const InteractionCreate: EventListener = {
     }
 }
 
-async function handleSlashCommand(client: Client, interaction: CommandInteraction, botUser: BotUserDoc): Promise<[Response, string] | Failure> {
+async function handleSlashCommand(client: Client, interaction: CommandInteraction, botUser: BotUserDoc, discordUser: DiscordUserDoc): Promise<[Response, string] | Failure> {
     debug("Slash command interaction recieved");
 
     let statKey = "bot.event.interaction.command";
@@ -65,7 +69,7 @@ async function handleSlashCommand(client: Client, interaction: CommandInteractio
 
     if (commandHandler.run) {
         try {
-            const result = await commandHandler.run(client, interaction, botUser);
+            const result = await commandHandler.run(client, interaction, botUser, discordUser);
             if (result instanceof Failure) {
                 return result;
             } else {
@@ -118,7 +122,7 @@ async function handleSlashCommand(client: Client, interaction: CommandInteractio
     }
 
     try {
-        const result = await subcommandHandler.run(client, interaction, botUser);
+        const result = await subcommandHandler.run(client, interaction, botUser, discordUser);
         if (result instanceof Failure) {
             return result;
         } else {
@@ -129,7 +133,7 @@ async function handleSlashCommand(client: Client, interaction: CommandInteractio
     }
 }
 
-async function handleMessageComponent(client: Client, interaction: MessageComponentInteraction, botUser: BotUserDoc): Promise<[Response, string] | Failure> {
+async function handleMessageComponent(client: Client, interaction: MessageComponentInteraction, botUser: BotUserDoc, discordUser: DiscordUserDoc): Promise<[Response, string] | Failure> {
     debug("Message component interaction recieved");
 
     let statKey = "bot.event.interaction.component";
@@ -168,10 +172,10 @@ async function handleMessageComponent(client: Client, interaction: MessageCompon
         let result: Response | Failure;
         switch (component.type) {
             case ComponentType.Button:
-                result = await handler(client, interaction as ButtonInteraction, botUser, componentData);
+                result = await handler(client, interaction as ButtonInteraction, botUser, discordUser, componentData);
                 break;
             default:
-                result = await handler(client, interaction, botUser, componentData);
+                result = await handler(client, interaction, botUser, discordUser, componentData);
                 break;
         }
         if (result instanceof Failure) {

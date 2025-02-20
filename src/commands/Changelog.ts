@@ -12,7 +12,7 @@ export const Changelog: Command = {
     name: "changelog",
     description: "What's new in the latest version?",
     type: ApplicationCommandType.ChatInput,
-    run: async (client, interaction, botUser) => {
+    run: async (client, interaction, botUser, discordUser) => {
         debug("Changelog command called");
         const releases = await getReleases();
         return releaseMessage(releases, 0, ReplyType.Reply);

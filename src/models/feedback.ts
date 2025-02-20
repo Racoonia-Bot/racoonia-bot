@@ -1,6 +1,5 @@
 import { Document, Model, Schema, model } from 'mongoose';
-import { DiscordUserDoc, getOrCreateDiscordUser, getDiscordUserData } from './discordUser';
-import { User } from 'discord.js';
+import { DiscordUserDoc } from './discordUser';
 import { debug } from '../Log';
 
 export type FeedbackType = 'bug' | 'suggestion' | 'other';
@@ -35,11 +34,9 @@ const feedbackSchema = new Schema<FeedbackDoc, FeedbackModel>({
 
 const feedbackModel = model<FeedbackDoc, FeedbackModel>('Feedback', feedbackSchema);
 
-export async function createFeedback(creatorUser: User, type: FeedbackType, description: string): Promise<FeedbackPopulated> {
+export async function createFeedback(creator: DiscordUserDoc, type: FeedbackType, description: string): Promise<FeedbackPopulated> {
     debug(`Creating ${type} feedback`);
 
-    const creatorData = getDiscordUserData(creatorUser);
-    const creator = await getOrCreateDiscordUser(creatorData.name, creatorData.type, creatorUser.id);
     return await feedbackModel.create({ creator, type, description }) as FeedbackPopulated;
 }
 
