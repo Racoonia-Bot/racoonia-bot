@@ -36,7 +36,7 @@ export const Feedback: Command = {
             required: true,
         }
     ],
-    run: async (client, interaction, botUser) => {
+    run: async (client, interaction, botUser, discordUser) => {
         debug("Feedback command called");
 
         if (!interaction.isChatInputCommand()) {
@@ -45,7 +45,7 @@ export const Feedback: Command = {
 
         const feedbackType = interaction.options.getString("type", true) as FeedbackType;
         const feedbackDescription = interaction.options.getString("description", true);
-        await createFeedback(interaction.user, feedbackType, feedbackDescription);
+        await createFeedback(discordUser, feedbackType, feedbackDescription);
 
         return {
             replyType: ReplyType.Reply,
